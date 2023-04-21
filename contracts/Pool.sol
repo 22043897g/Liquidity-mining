@@ -7,11 +7,11 @@ contract Pool {
     ERC20 public MyUSDT;
     uint public rewardPerBlock = 100;
     uint public lastUpdate;
+    uint public MyTokenAmount;
     //RPT = Reward Per Token
     uint public latestRPT;
     mapping(address => uint) public userLatestRPT;
     mapping(address => uint) public rewards;
-    uint public MyTokenAmount;
     mapping(address => uint) public balanceOf;
 
     constructor(address _MyToken, address _MyUSDT) {
@@ -32,7 +32,7 @@ contract Pool {
     }
 
     //获取最新的Reward Per Token
-    function getRPT() public view returns (uint) {
+    function getRPT() internal view returns (uint) {
         if (MyTokenAmount == 0) {
             return latestRPT;
         }
